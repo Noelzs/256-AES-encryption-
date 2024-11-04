@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Store</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        body {
+            background-image: url("images/bg.png");
+            background-size: cover;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .navbar-brand {
+            color: white;
+            font-weight: bold;
+        }
+
+        .nav-link {
+            color: white;
+        }
+
+        .banner {
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .banner h1 {
+            font-size: 60px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .banner p {
+            font-size: 20px;
+        }
+
+        .banner button {
+            background-color: #ff9900;
+            border: none;
+            padding: 15px 30px;
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .catalog {
+            padding: 40px;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .catalog h2 {
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            border: none;
+            border-radius: 20px; /* Added some curves */
+            overflow: hidden; /* Ensure the overflow is hidden to contain the curves */
+            transition: transform 0.3s ease;
+            background-color: rgba(255, 255, 255, 0.2); /* Transparent background */
+            backdrop-filter: blur(10px); /* Apply a blur effect for glass-like appearance */
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-img-top {
+            height: 200px; /* Adjusted height for uniformity */
+            object-fit: cover;
+            border-radius: 20px 20px 0 0; /* Added some curves */
+        }
+
+        .card-body {
+            background-color: transparent; /* Transparent background */
+            padding: 15px;
+            color: white; /* Change text color to white */
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .card-text {
+            font-size: 14px;
+            color: white; /* Change text color to white */
+        }
+
+        .card-price {
+            font-size: 16px;
+            font-weight: bold;
+            color: #ff9900;
+        }
+
+        .footer {
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Game Store</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="Home.html">Home</a>
+                    </li>
+                    <!-- <li class="nav-item"> -->
+                        <!-- <a class="nav-link" href="login.php">Login</a> -->
+                    <!-- </li> -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="Cart.html">Cart</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="Gallery.html">Gallery</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="Contact us.html">Contact us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="banner">
+        <div class="container">
+        </div>
+    </div>
+    <div class="catalog">
+        <div class="container">
+            <h2>Contact us</h2>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="card">
+
+                        <div class="card-body">
+                            <h5 class="card-title"></h5>
+                            <p class="card-text">Email - gamestore@hotmail.com</p>
+                            <p class="card-price">Phone- 01010101011</p>
+                        </div>
+                    </div>
+                </div>
+    <div class="footer">
+        <div class="container">
+            <p>© 2024 Game Store. All rights reserved.</p>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

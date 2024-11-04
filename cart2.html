@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Store - Cart</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        body {
+            background-image: url("images/bg.png");
+            background-size: cover;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .navbar-brand {
+            color: white;
+            font-weight: bold;
+        }
+
+        .nav-link {
+            color: white;
+        }
+
+        .container {
+            margin-top: 20px;
+        }
+
+        .cart-item {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.5); /* Transparent white border */
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.3); /* Transparent white background */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(5px); /* Add the glass effect */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+        }
+
+        .cart-item-text {
+            flex: 1;
+            color: white; /* Make text bright */
+        }
+
+        .remove-button {
+            background-color: transparent;
+            border: none;
+            color: #ff0000; /* Red color for the button */
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease; /* Smooth transition effect for color change */
+        }
+
+        .remove-button:hover {
+            color: #cc0000; /* Darker red color on hover */
+        }
+
+        .cart-total {
+            font-weight: bold;
+            font-size: 18px;
+            color: white;
+        }
+
+        .btn-checkout {
+            background-color: #ff9900;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .colorsakelol  {
+            color:azure
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Game Store</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="Home.html">Home</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="Cart.html">Cart</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <h2 class="colorsakelol">Your Cart</h2>
+        <br>
+        <div id="cart-items"></div>
+        <div class="cart-total">Total: $<span id="cart-total">0.00</span></div>
+        <br>
+        <button class="btn-checkout" id="iwishtodisableyou" onclick="handleCheckout()">Proceed to Checkout</button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.min.js"></script>
+    <script>
+        // Array to store the items in the cart
+        var cartItems = [];
+
+        // Function to add an item to the cart
+        function addToCart(title, price) {
+            cartItems.push({ title: title, price: price });
+            updateCart();
+        }
+
+        // Function to remove an item from the cart
+        function removeFromCart(index) {
+            cartItems.splice(index, 1);
+            updateCart();
+        }
+
+        // Function to calculate the total cart cost
+        function calculateCartTotal() {
+            var totalCost = 0;
+            cartItems.forEach(function (item) {
+                totalCost += parseFloat(item.price);
+            });
+            return totalCost;
+        }
+
+        // Function to update the cart display
+        function updateCart() {
+            var cartContainer = document.getElementById('cart-items');
+            cartContainer.innerHTML = '';
+
+            cartItems.forEach(function (item, index) {
+                var cartItemDiv = document.createElement('div');
+                cartItemDiv.classList.add('cart-item');
+
+                var itemText = document.createElement('span');
+                itemText.classList.add('cart-item-text');
+                itemText.textContent = item.title + ' - $' + item.price;
+
+                var removeButton = document.createElement('button');
+                removeButton.classList.add('remove-button');
+                removeButton.innerHTML = '<i class="material-icons">clear</i>';
+                removeButton.addEventListener('click', function () {
+                    removeFromCart(index);
+                });
+
+                cartItemDiv.appendChild(itemText);
+                cartItemDiv.appendChild(removeButton);
+                cartContainer.appendChild(cartItemDiv);
+            });
+
+            var cartTotal = calculateCartTotal();
+            document.getElementById('cart-total').textContent = cartTotal.toFixed(2);
+            document.getElementById("iwishtodisableyou").disabled = cartTotal < 1;
+        }
+
+        // Load cart items on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            var storedCartItems = localStorage.getItem('cart');
+            if (storedCartItems) {
+                cartItems = JSON.parse(storedCartItems);
+                updateCart();
+            }
+        });
+
+        // Save cart items to localStorage when the page is unloaded
+        window.addEventListener('beforeunload', function () {
+            localStorage.setItem('cart', JSON.stringify(cartItems));
+        });
+    // Function to handle the click event for the "Proceed to Checkout" button
+    function handleCheckout() {
+        // Serialize cartItems array to JSON and encode it for URL
+        var cartItemsJson = encodeURIComponent(JSON.stringify(cartItems));
+        // Redirect to checkout.php with cartItems as query parameter
+        window.location.href = 'checkout.php?cartItems=' + cartItemsJson;
+    }
+
+    // Add event listener to the "Proceed to Checkout" button
+    document.getElementById('iwishtodisableyou').addEventListener('click', handleCheckout);
+</script>
+</body>
+
+</html>
+

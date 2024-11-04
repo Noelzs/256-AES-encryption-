@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title style="color:azure">Admin Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url("images/haha2.jpg");
+            background-size: cover;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }       
+
+        button {
+            
+            margin: 10px;
+        }
+
+        #logs,
+        #data {
+            margin-top: 20px;
+        }
+</style>
+</head>
+<body>
+    <div class="container">
+        <h1>Admin Panel</h1>
+        <br/><br/><br/>
+        <button onclick="window.location.href = 'index.php';">View Transaction Logs</button>
+        <button onclick="window.location.href ='index1.php';">View Encrypted Data</button>
+        <button onclick="window.location.href ='Decrypt.php';">Decrypt Data</button>
+        <div id="logs"></div>
+        <div id="data"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
